@@ -6,4 +6,4 @@ LTO_ENABLE = yes
 MIRYOKU_ALPHAS = COLEMAK
 MIRYOKU_EXTRA = qwerty
 
-SRC += byronc_config.c
+SRC += byronc_config.c features/achordion.c

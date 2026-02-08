@@ -7,7 +7,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,        KC_J,    KC_L,    KC_U,    KC_Y,    KC_QUOT,
         HM_A,    HM_R,    HM_S,    HM_T,    KC_D,        KC_H,    HM_N,    HM_E,    HM_I,    HM_O,
         KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,        KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,
-        XXXXXXX, XXXXXXX, KC_ESC,  NUM_TAB, NAV_SPC,     KC_ENT,  SYM_BSP, FUN_DEL, XXXXXXX, XXXXXXX
+        XXXXXXX, XXXXXXX, KC_ESC,  NAV_SPC, KC_TAB,      SYM_ENT, NUM_BSP, FUN_DEL, XXXXXXX, XXXXXXX
     ),
 
     [_NAV] = LAYOUT_byron(

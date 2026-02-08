@@ -17,7 +17,7 @@ The Kyria uses an rp2040_ce microcontroller and has no RGB or OLED hardware.
 36-key canonical layout with per-keyboard adapters, same pattern as Miryoku.
 
 ### Shared code (`users/byron/`)
-- `byron.h` — Layer enums, homerow mod aliases (`HM_A` etc), thumb key aliases (`NAV_SPC` etc)
+- `byron.h` — Layer enums, homerow mod aliases (`HM_A` etc), thumb key aliases (`NAV_SPC`, `NUM_BSP` etc)
 - `byron.c` — All 5 layers defined here using `LAYOUT_byron()`. Included via `INTROSPECTION_KEYMAP_C` (not `SRC +=`) because QMK's `keymap_introspection.c` needs `sizeof(keymaps)` at compile time
 - `config.h` — Timeless homerow mod settings (CHORDAL_HOLD, FLOW_TAP_TERM, PERMISSIVE_HOLD), RGB defaults, Oryx disable
 - `rules.mk` — Feature flags and `INTROSPECTION_KEYMAP_C = byron.c`
@@ -38,8 +38,8 @@ Each has:
 |-------|-----------|---------|
 | BASE | default | Colemak + homerow mods (GUI/ALT/CTL/SFT) |
 | NAV | hold Space | Arrows, Home/End, PgUp/PgDn, Caps Word |
-| NUM | hold Tab | Number pad + arithmetic operators |
-| SYM | hold Bspc | Shifted symbols + brackets |
+| NUM | hold Bspc | Number pad + arithmetic operators |
+| SYM | hold Enter | Shifted symbols + brackets |
 | FUN | hold Del | F-keys + media (mute/vol) |
 
 ## Key design decisions

@@ -10,3 +10,4 @@
 *.bin
 *.uf2
 /.python-version
+/.claude/settings.local.json

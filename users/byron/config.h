@@ -1,10 +1,10 @@
 #pragma once
 
-#define TAPPING_TERM 200
-#define QUICK_TAP_TERM 0        // No auto-repeat on mod-taps
-#define PERMISSIVE_HOLD         // Hold on nested taps (ZMK "balanced")
-#define CHORDAL_HOLD            // Opposite-hands rule (replaces Achordion)
-#define FLOW_TAP_TERM 150       // Fast-typing bypass (ZMK require-prior-idle)
+#define TAPPING_TERM 250
+#define PERMISSIVE_HOLD             // Hold on nested taps (ZMK "balanced")
+#define FLOW_TAP_TERM 100           // Fast-typing bypass (ZMK require-prior-idle)
+#define CHORDAL_HOLD                // Opposite-hands rule (replaces Achordion)
+#define SPECULATIVE_HOLD            // Immediate modifier (ZMK hold-while-undecided)
 
 #define CAPS_WORD_IDLE_TIMEOUT 5000
 

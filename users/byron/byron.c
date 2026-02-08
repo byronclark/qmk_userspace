@@ -7,7 +7,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,        KC_J,    KC_L,    KC_U,    KC_Y,    KC_QUOT,
         HM_A,    HM_R,    HM_S,    HM_T,    KC_D,        KC_H,    HM_N,    HM_E,    HM_I,    HM_O,
         KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,        KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,
-        XXXXXXX, XXXXXXX, KC_ESC,  NAV_SPC, KC_TAB,      SYM_ENT, NUM_BSP, FUN_DEL, XXXXXXX, XXXXXXX
+        XXXXXXX, XXXXXXX, MED_ESC, NAV_SPC, MSE_TAB,     SYM_ENT, NUM_BSP, FUN_DEL, XXXXXXX, XXXXXXX
     ),
 
     [_NAV] = LAYOUT_byron(
@@ -35,7 +35,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_F12,  KC_F7,   KC_F8,   KC_F9,   KC_PSCR,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         KC_F11,  KC_F4,   KC_F5,   KC_F6,   KC_SCRL,    XXXXXXX, KC_RSFT, KC_RCTL, KC_LALT, KC_RGUI,
         KC_F10,  KC_F1,   KC_F2,   KC_F3,   KC_PAUS,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-        XXXXXXX, XXXXXXX, KC_MUTE, KC_VOLD, KC_VOLU,    _______, _______, _______, XXXXXXX, XXXXXXX
+        XXXXXXX, XXXXXXX, _______, _______, _______,    _______, _______, _______, XXXXXXX, XXXXXXX
+    ),
+
+    [_MEDIA] = LAYOUT_byron(
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, XXXXXXX,    XXXXXXX, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, _______, _______, _______,    KC_MSTP, KC_MPLY, KC_MUTE, XXXXXXX, XXXXXXX
+    ),
+
+    [_MOUSE] = LAYOUT_byron(
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, XXXXXXX,    XXXXXXX, MS_LEFT, MS_DOWN, MS_UP,   MS_RGHT,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, MS_WHLL, MS_WHLD, MS_WHLU, MS_WHLR,
+        XXXXXXX, XXXXXXX, _______, _______, _______,    MS_BTN2, MS_BTN1, MS_BTN3, XXXXXXX, XXXXXXX
     ),
 };
 // clang-format on

@@ -18,7 +18,7 @@ The Kyria uses an rp2040_ce microcontroller and has no RGB or OLED hardware.
 
 ### Shared code (`users/byron/`)
 - `byron.h` — Layer enums, homerow mod aliases (`HM_A` etc), thumb key aliases (`NAV_SPC`, `NUM_BSP` etc)
-- `byron.c` — All 5 layers defined here using `LAYOUT_byron()`. Included via `INTROSPECTION_KEYMAP_C` (not `SRC +=`) because QMK's `keymap_introspection.c` needs `sizeof(keymaps)` at compile time
+- `byron.c` — All 7 layers defined here using `LAYOUT_byron()`. Included via `INTROSPECTION_KEYMAP_C` (not `SRC +=`) because QMK's `keymap_introspection.c` needs `sizeof(keymaps)` at compile time
 - `config.h` — Timeless homerow mod settings (CHORDAL_HOLD, FLOW_TAP_TERM, PERMISSIVE_HOLD), RGB defaults, Oryx disable
 - `rules.mk` — Feature flags and `INTROSPECTION_KEYMAP_C = byron.c`
 
@@ -40,7 +40,9 @@ Each has:
 | NAV | hold Space | Arrows, Home/End, PgUp/PgDn, Caps Word |
 | NUM | hold Bspc | Number pad + arithmetic operators |
 | SYM | hold Enter | Shifted symbols + brackets |
-| FUN | hold Del | F-keys + media (mute/vol) |
+| FUN | hold Del | F-keys |
+| MEDIA | hold Esc | Media transport (prev/next, vol, play/stop/mute) |
+| MOUSE | hold Tab | Mouse movement, scroll wheel, buttons |
 
 ## Key design decisions
 - Uses LALT (not RALT/AltGr) on both hands for homerow mods

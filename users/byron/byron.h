@@ -8,6 +8,8 @@ enum byron_layers {
     _NUM,
     _SYM,
     _FUN,
+    _MEDIA,
+    _MOUSE,
 };
 
 // Left hand homerow mods
@@ -27,3 +29,5 @@ enum byron_layers {
 #define NUM_BSP LT(_NUM, KC_BSPC)
 #define SYM_ENT LT(_SYM, KC_ENT)
 #define FUN_DEL LT(_FUN, KC_DEL)
+#define MED_ESC LT(_MEDIA, KC_ESC)
+#define MSE_TAB LT(_MOUSE, KC_TAB)

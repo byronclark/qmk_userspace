@@ -54,6 +54,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 // clang-format on
 
+#ifdef FLOW_TAP_TERM_PER_KEY
+uint16_t get_flow_tap_term(uint16_t keycode, keyrecord_t* record, uint16_t prev_keycode) {
+    // Disable Flow Tap for both shift mod-taps
+    uint8_t mod = mod_config(QK_MOD_TAP_GET_MODS(keycode));
+    if ((mod & MOD_LSFT) || (mod & MOD_RSFT)) {
+        return 0;  // 0 = disable Flow Tap for this key
+    }
+    // Enable for other mod-taps
+    return FLOW_TAP_TERM;
+}
+#endif
+
 #ifdef CHORDAL_HOLD
 // Allow same-hand Ctrl/Cmd+C/X/V
 bool get_chordal_hold(uint16_t tap_hold_keycode, keyrecord_t *tap_hold_record,

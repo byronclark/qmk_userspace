@@ -84,16 +84,27 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
 #endif
 
 #ifdef CHORDAL_HOLD
-// Allow same-hand Ctrl/Cmd+C/X/V
+// Allow same-hand copy/paste and browser devtools
 bool get_chordal_hold(uint16_t tap_hold_keycode, keyrecord_t *tap_hold_record,
                       uint16_t other_keycode, keyrecord_t *other_record) {
     switch (tap_hold_keycode) {
+        // Left hand: Ctrl/Cmd + C/X/V for copy/paste
         case HM_S:
         case HM_A:
             switch (other_keycode) {
                 case KC_C:
                 case KC_X:
                 case KC_V:
+                    return true;
+            }
+            break;
+
+        // Right hand: Cmd/Opt + K/J for browser devtools
+        case HM_O:  // Right Cmd
+        case HM_I:  // Right Opt
+            switch (other_keycode) {
+                case KC_K:  // Firefox Cmd+Opt+K
+                case KC_J:  // Chrome Cmd+Opt+J
                     return true;
             }
             break;

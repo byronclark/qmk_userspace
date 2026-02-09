@@ -4,6 +4,7 @@
 #define PERMISSIVE_HOLD             // Hold on nested taps (ZMK "balanced")
 #define FLOW_TAP_TERM 100           // Fast-typing bypass (ZMK require-prior-idle)
 #define FLOW_TAP_TERM_PER_KEY       // Disable Flow Tap for shift keys
+#define QUICK_TAP_TERM_PER_KEY      // Custom tap-repeat per key
 #define CHORDAL_HOLD                // Opposite-hands rule (replaces Achordion)
 #define SPECULATIVE_HOLD            // Immediate modifier (ZMK hold-while-undecided)
 

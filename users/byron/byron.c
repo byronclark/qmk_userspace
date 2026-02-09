@@ -66,6 +66,23 @@ uint16_t get_flow_tap_term(uint16_t keycode, keyrecord_t* record, uint16_t prev_
 }
 #endif
 
+#ifdef QUICK_TAP_TERM_PER_KEY
+uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        // All thumb layer-tap keys get tight 80ms window
+        case NAV_SPC:   // LT(_NAV, KC_SPC)
+        case NUM_BSP:   // LT(_NUM, KC_BSPC)
+        case SYM_ENT:   // LT(_SYM, KC_ENT)
+        case FUN_DEL:   // LT(_FUN, KC_DEL)
+        case MED_ESC:   // LT(_MEDIA, KC_ESC)
+        case MSE_TAB:   // LT(_MOUSE, KC_TAB)
+            return 80;  // Tight window - requires intentional double-tap
+        default:
+            return QUICK_TAP_TERM;  // Normal timing for all other keys
+    }
+}
+#endif
+
 #ifdef CHORDAL_HOLD
 // Allow same-hand Ctrl/Cmd+C/X/V
 bool get_chordal_hold(uint16_t tap_hold_keycode, keyrecord_t *tap_hold_record,

@@ -53,3 +53,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 };
 // clang-format on
+
+#ifdef CHORDAL_HOLD
+// Allow same-hand Ctrl/Cmd+C/X/V
+bool get_chordal_hold(uint16_t tap_hold_keycode, keyrecord_t *tap_hold_record,
+                      uint16_t other_keycode, keyrecord_t *other_record) {
+    switch (tap_hold_keycode) {
+        case HM_S:
+        case HM_A:
+            switch (other_keycode) {
+                case KC_C:
+                case KC_X:
+                case KC_V:
+                    return true;
+            }
+            break;
+    }
+    return get_chordal_hold_default(tap_hold_record, other_record);
+}
+#endif

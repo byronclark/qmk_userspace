@@ -1,6 +1,6 @@
 #pragma once
 
-#define TAPPING_TERM 280
+#define TAPPING_TERM 200
 #define PERMISSIVE_HOLD             // Hold on nested taps (ZMK "balanced")
 #define FLOW_TAP_TERM 120           // Fast-typing bypass (ZMK require-prior-idle)
 #define FLOW_TAP_TERM_PER_KEY       // Enable Flow Tap only for pinky keys

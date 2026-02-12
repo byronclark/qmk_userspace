@@ -77,6 +77,9 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
         case MED_ESC:   // LT(_MEDIA, KC_ESC)
         case MSE_TAB:   // LT(_MOUSE, KC_TAB)
             return 80;  // Tight window - requires intentional double-tap
+        // Disable quick tap for e as it's often re-used immediately for a right hand Ctrl chord
+        case HM_E:
+            return 0;
         default:
             return QUICK_TAP_TERM;  // Normal timing for all other keys
     }

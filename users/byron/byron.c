@@ -54,18 +54,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 // clang-format on
 
-#ifdef FLOW_TAP_TERM_PER_KEY
-uint16_t get_flow_tap_term(uint16_t keycode, keyrecord_t* record, uint16_t prev_keycode) {
-    switch (keycode) {
-        case HM_A:  // Left pinky GUI
-        case HM_O:  // Right pinky GUI
-            return FLOW_TAP_TERM;
-        default:
-            return 0;  // Disable Flow Tap for all other mod-taps
-    }
-}
-#endif
-
 #ifdef PERMISSIVE_HOLD_PER_KEY
 bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {

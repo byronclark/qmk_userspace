@@ -27,20 +27,7 @@ Reference for adjusting tap-hold timing constants. Each section describes what t
 | Intentional LALT chord requires awkward deliberate hold | Re-enable permissive hold for that key (accepting the bigram false trigger) |
 | Other modifier (GUI/Ctrl/Shift) fails to fire on fast nested keypresses | That key may have permissive hold inadvertently disabled |
 
-**History:** Started with global `PERMISSIVE_HOLD`. Switched to `PERMISSIVE_HOLD_PER_KEY` and disabled for HM_R and HM_I after the `it` bigram (e.g. "sitting") was producing Option+T on macOS. Flow tap was considered but rejected because it previously caused Ctrl false negatives when applied to non-pinky keys.
-
-## FLOW_TAP_TERM (currently 100ms)
-
-**Applies to:** Pinky GUI keys only (HM_A, HM_O) via `get_flow_tap_term()`. Returns 0 (disabled) for all other mod-taps.
-
-**What it does:** If the previous keypress was within this window, the mod-tap resolves as a tap regardless of other heuristics. Prevents false modifier activation during fast typing rolls.
-
-| Symptom | Direction | Example |
-|---------|-----------|---------|
-| GUI triggers during fast typing through A or O | Decrease | Typing "star" or "boat" activates GUI |
-| GUI+key shortcut fails after typing (registers as plain letter) | Increase | Pause after typing, hit GUI+Tab, get `a` instead |
-
-**History:** Was 150, reduced to 120. Disabled for Shift (T/N) and Ctrl (S/E) keys because it caused false taps when those modifiers were intended. Reduced from 120 to 100 to fix remaining GUI false taps.
+**History:** Started with global `PERMISSIVE_HOLD`. Switched to `PERMISSIVE_HOLD_PER_KEY` and disabled for HM_R and HM_I after the `it` bigram (e.g. "sitting") was producing Option+T on macOS.
 
 ## QUICK_TAP_TERM (currently 80ms for thumb keys, 120ms for others)
 

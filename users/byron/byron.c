@@ -66,6 +66,18 @@ uint16_t get_flow_tap_term(uint16_t keycode, keyrecord_t* record, uint16_t prev_
 }
 #endif
 
+#ifdef PERMISSIVE_HOLD_PER_KEY
+bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case HM_R:  // LALT left hand - prevent 're', 'ri' bigrams → Option on macOS
+        case HM_I:  // LALT right hand - prevent 'it', 'is' bigrams → Option on macOS
+            return false;
+        default:
+            return true;
+    }
+}
+#endif
+
 #ifdef QUICK_TAP_TERM_PER_KEY
 uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {

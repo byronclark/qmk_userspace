@@ -19,7 +19,7 @@ The Kyria uses an rp2040_ce microcontroller and has no RGB or OLED hardware.
 ### Shared code (`users/byron/`)
 - `byron.h` — Layer enums, homerow mod aliases (`HM_A` etc), thumb key aliases (`NAV_SPC`, `NUM_BSP` etc)
 - `byron.c` — All 7 layers defined here using `LAYOUT_byron()`. Included via `INTROSPECTION_KEYMAP_C` (not `SRC +=`) because QMK's `keymap_introspection.c` needs `sizeof(keymaps)` at compile time
-- `config.h` — Timeless homerow mod settings (CHORDAL_HOLD, FLOW_TAP_TERM, PERMISSIVE_HOLD), RGB defaults, Oryx disable
+- `config.h` — Timeless homerow mod settings (CHORDAL_HOLD, FLOW_TAP_TERM, PERMISSIVE_HOLD_PER_KEY), RGB defaults, Oryx disable
 - `rules.mk` — Feature flags and `INTROSPECTION_KEYMAP_C = byron.c`
 
 ### Per-keyboard adapters (`keyboards/.../keymaps/byron/`)
@@ -47,4 +47,6 @@ Each has:
 ## Key design decisions
 - Uses LALT (not RALT/AltGr) on both hands for homerow mods
 - Non-base layers have plain mods on the opposite hand (e.g. NAV has arrow keys right, plain GUI/ALT/CTL/SFT left)
+- PERMISSIVE_HOLD disabled for LALT keys (HM_R, HM_I) only — common bigrams like `it`, `re` were triggering Option on macOS; GUI/Ctrl/Shift keep permissive hold
+- Flow tap enabled for pinky GUI keys (HM_A, HM_O) only — enabling it for other HRMs caused Ctrl false negatives
 - Miryoku keymaps (`-km manna-harbour_miryoku`) coexist untouched in this repo

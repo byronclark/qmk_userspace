@@ -15,6 +15,20 @@ Reference for adjusting tap-hold timing constants. Each section describes what t
 
 **History:** Was 250, bumped to 280 (mistake — made Ctrl worse), set to 200.
 
+## PERMISSIVE_HOLD_PER_KEY
+
+**Applies to:** All mod-taps, but only GUI/Ctrl/Shift keys return `true` from `get_permissive_hold()`. LALT keys (HM_R, HM_I) return `false`.
+
+**What it does:** When enabled for a key, a nested keypress (pressing another key while the mod-tap is held) immediately resolves the mod-tap as a hold, without waiting for TAPPING_TERM. When disabled for a key, a hold only fires after TAPPING_TERM expires.
+
+| Symptom | Direction |
+|---------|-----------|
+| Common bigrams trigger Option on macOS (e.g. `it` → Option+T, `re` → Option+E) | Disable permissive hold for that LALT key |
+| Intentional LALT chord requires awkward deliberate hold | Re-enable permissive hold for that key (accepting the bigram false trigger) |
+| Other modifier (GUI/Ctrl/Shift) fails to fire on fast nested keypresses | That key may have permissive hold inadvertently disabled |
+
+**History:** Started with global `PERMISSIVE_HOLD`. Switched to `PERMISSIVE_HOLD_PER_KEY` and disabled for HM_R and HM_I after the `it` bigram (e.g. "sitting") was producing Option+T on macOS. Flow tap was considered but rejected because it previously caused Ctrl false negatives when applied to non-pinky keys.
+
 ## FLOW_TAP_TERM (currently 100ms)
 
 **Applies to:** Pinky GUI keys only (HM_A, HM_O) via `get_flow_tap_term()`. Returns 0 (disabled) for all other mod-taps.

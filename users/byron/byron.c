@@ -57,6 +57,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #ifdef PERMISSIVE_HOLD_PER_KEY
 bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+        case HM_A:  // LGUI left hand - prevent 'a ' bigrams → CMD on macOS
+        case HM_O:  // RGUI right hand - prevent ' o' bigrams → CMD on macOS
         case HM_R:  // LALT left hand - prevent 're', 'ri' bigrams → Option on macOS
         case HM_I:  // LALT right hand - prevent 'it', 'is' bigrams → Option on macOS
             return false;

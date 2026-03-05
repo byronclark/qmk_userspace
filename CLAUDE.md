@@ -48,5 +48,5 @@ Each has:
 ## Key design decisions
 - Uses LALT (not RALT/AltGr) on both hands for homerow mods
 - Non-base layers have plain mods on the opposite hand (e.g. NAV has arrow keys right, plain GUI/ALT/CTL/SFT left)
-- PERMISSIVE_HOLD disabled for LALT keys (HM_R, HM_I) only — common bigrams like `it`, `re` were triggering Option on macOS; GUI/Ctrl/Shift keep permissive hold
+- PERMISSIVE_HOLD disabled for GUI keys (HM_A, HM_O) and LALT keys (HM_R, HM_I) — bigrams like `space a space`, `space o` were triggering CMD+Space, and `it`, `re` were triggering Option on macOS; Ctrl/Shift keep permissive hold
 - Miryoku keymaps (`-km manna-harbour_miryoku`) coexist untouched in this repo

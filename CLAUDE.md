@@ -10,7 +10,7 @@ QMK external userspace for Byron's keyboards. Lives alongside the QMK firmware r
 | Kyria rev3 | `qmk compile -e CONVERT_TO=rp2040_ce -e RGB_MATRIX_ENABLE=no -e OLED_ENABLE=no -kb splitkb/kyria/rev3 -km byron` |
 | ErgoDox EZ Glow | `qmk compile -kb ergodox_ez/glow -km byron` |
 
-The Kyria uses an rp2040_ce microcontroller and has no RGB or OLED hardware.
+The Kyria uses an rp2040_ce microcontroller and has no RGB or OLED hardware. Its adapter also sets `DEBOUNCE 15` + `DEBOUNCE_TYPE = sym_eager_pk` to absorb intermittent contact chatter on the `n` switch (suspected hotswap socket — hardware fix pending). See TUNING.md.
 
 ## Architecture
 

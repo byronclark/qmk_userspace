@@ -42,3 +42,16 @@ Reference for adjusting tap-hold timing constants. Each section describes what t
 | Can't intentionally repeat thumb keys fast enough | Increase | Want to tap-tap-tap space quickly but second tap activates layer |
 
 **History:** Global default was 150, reduced to 120. Thumb keys use hardcoded 80ms; HM_E returns 0.
+
+## DEBOUNCE (Kyria only: 15ms with sym_eager_pk)
+
+**Applies to:** Kyria adapter only (`keyboards/splitkb/kyria/keymaps/byron/`). Other boards stay on QMK's 5ms / `sym_defer_g` defaults.
+
+**What it does:** With `sym_eager_pk`, the firmware reports the first matrix change on a key immediately, then ignores further transitions on that same key for DEBOUNCE ms. Higher DEBOUNCE absorbs longer contact glitches; per-key keeps press latency at zero and isolates the workaround to whichever key actually chatters.
+
+| Symptom | Direction |
+|---------|-----------|
+| Single tap of a homerow mod produces a double letter + lowercase shifted-pair partner (e.g. `Pending` → `nnpending`) | Increase DEBOUNCE — the switch is opening for longer than the current window mid-hold, and QUICK_TAP_TERM amplifies the resulting fake tap into a doubled tap with no shift |
+| Fast intentional repeats of the same key are getting dropped | Decrease DEBOUNCE |
+
+**History:** Set on Kyria after a replacement `n` switch reproduced the original doubling. `qmk console` showed a ~5ms close, ~7ms open, then sustained hold on `r5 c2` for a single intended Shift hold — both windows just above QMK's 5ms default. Two switches chattering identically points at the hotswap socket, not the switch. Revert when the hardware is fixed.

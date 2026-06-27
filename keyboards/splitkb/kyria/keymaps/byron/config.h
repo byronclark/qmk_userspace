@@ -1,5 +1,11 @@
 #pragma once
 
+// Bumped from QMK's 5ms default to absorb intermittent contact loss on the
+// `n` switch (~7ms open windows mid-hold were turning intended Shift holds
+// into `nn` + lowercase). Paired with sym_eager_pk in rules.mk so press
+// latency stays at zero.
+#define DEBOUNCE 15
+
 #define XXX KC_NO
 
 #define LAYOUT_byron( \

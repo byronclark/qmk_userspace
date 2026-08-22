@@ -1,5 +1,10 @@
 #pragma once
 
+// Bumped from QMK's 5ms default to absorb intermittent contact chatter that
+// turns single taps into double letters (e.g. `y` → `yy`). Paired with
+// sym_eager_pk in rules.mk so press latency stays at zero.
+#define DEBOUNCE 15
+
 #define XXX KC_NO
 
 #define LAYOUT_byron( \

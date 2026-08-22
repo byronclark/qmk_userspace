@@ -43,7 +43,16 @@ Reference for adjusting tap-hold timing constants. Each section describes what t
 
 **History:** Global default was 150, reduced to 120. Thumb keys use hardcoded 80ms; HM_E returns 0.
 
-## Retired workarounds
+## DEBOUNCE (Kyria only: 15ms with sym_eager_pk)
 
-- **Kyria `n`-switch chatter:** bumped `DEBOUNCE` to 15ms with `DEBOUNCE_TYPE = sym_eager_pk` in the Kyria adapter (commit `0924fac`), reverted once the hotswap socket was resoldered. See that commit for the diagnostic details and the symptom-to-direction table; reapply if chatter returns.
+**Applies to:** Kyria adapter only (`keyboards/splitkb/kyria/keymaps/byron/`). Other boards stay on QMK's 5ms / `sym_defer_g` defaults.
+
+**What it does:** With `sym_eager_pk`, the firmware reports the first matrix change on a key immediately, then ignores further transitions on that same key for DEBOUNCE ms. Higher DEBOUNCE absorbs longer contact glitches; per-key keeps press latency at zero and isolates the workaround to whichever key actually chatters.
+
+| Symptom | Direction |
+|---------|-----------|
+| Single tap of a homerow mod produces a double letter + lowercase shifted-pair partner (e.g. `Pending` → `nnpending`) | Increase DEBOUNCE — the switch is opening for longer than the current window mid-hold, and QUICK_TAP_TERM amplifies the resulting fake tap into a doubled tap with no shift |
+| Fast intentional repeats of the same key are getting dropped | Decrease DEBOUNCE |
+
+**History:** Set on Kyria after a replacement `n` switch reproduced the original doubling. `qmk console` showed a ~5ms close, ~7ms open, then sustained hold on `r5 c2` for a single intended Shift hold — both windows just above QMK's 5ms default. Two switches chattering identically pointed at the hotswap socket, not the switch. Reverted once the socket was resoldered (commit `543e79a`), then reapplied (commit `0924fac` setup) when `y` started producing double letters again — likely the same intermittent-contact pattern, possibly typing-related rather than hardware.
 

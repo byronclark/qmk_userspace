@@ -56,3 +56,16 @@ Reference for adjusting tap-hold timing constants. Each section describes what t
 
 **History:** Set on Kyria after a replacement `n` switch reproduced the original doubling. `qmk console` showed a ~5ms close, ~7ms open, then sustained hold on `r5 c2` for a single intended Shift hold — both windows just above QMK's 5ms default. Two switches chattering identically pointed at the hotswap socket, not the switch. Reverted once the socket was resoldered (commit `543e79a`), then reapplied (commit `0924fac` setup) when `y` started producing double letters again — likely the same intermittent-contact pattern, possibly typing-related rather than hardware.
 
+## HOLD_ON_OTHER_KEY_PRESS_PER_KEY
+
+**Applies to:** Cross-thumb layer-tap keys (`NUM_BSP`, `SYM_ENT`, `FUN_DEL`, `MED_ESC`, `MSE_TAB`) via `get_hold_on_other_key_press()`. `NAV_SPC` deliberately returns `false` (falls back to `PERMISSIVE_HOLD`).
+
+**What it does:** Permissive hold only commits a tap-hold key to *hold* if the interrupting key is pressed **and released** before the tap-hold key itself releases. Hold-on-other-key-press commits to hold the instant the other key is *pressed*, regardless of release order.
+
+| Symptom | Direction | Example |
+|---------|-----------|---------|
+| A layer-tap key's own tap keycode fires (e.g. Backspace) instead of the layer activating, right when reaching a layer-shifted key on the *other* thumb | Enable hold-on-other-key-press for that key | Holding `NUM_BSP` for `-` (via `MSE_TAB`'s position) while typing `5-` or `d-`: releasing the right thumb (`NUM_BSP`) a beat before the left thumb (`MSE_TAB`) released `NUM_BSP` as a tap (Backspace) before the NUM layer ever activated, so the other key fell back to its base binding (`MSE_TAB` → Tab) instead of `-` |
+| Fast prose typing starts triggering a non-base layer instead of that key's tap | Disable hold-on-other-key-press for that key | Rolling the next word's first letter into `NAV_SPC`'s release before actually releasing space would turn much normal typing into Nav-layer activations — this is why `NAV_SPC` is excluded |
+
+**History:** Diagnosed via `qmk console` (with `CONSOLE_ENABLE`/`ACTION_DEBUG` temporarily enabled and `debug_enable` forced on in `keyboard_post_init_user`) after backspace started firing unexpectedly right after typing a NUM-layer character followed immediately by `-`. The trace showed `NUM_BSP` down, `MSE_TAB`'s position down 98ms later (good overlap), `NUM_BSP` up at 142ms (still under `TAPPING_TERM`, so it resolved as a tap → Backspace) — all before `MSE_TAB`'s position was released. Enabled per-key on the five thumb keys that reach layer-shifted characters on the opposite thumb; left off `NAV_SPC`.
+

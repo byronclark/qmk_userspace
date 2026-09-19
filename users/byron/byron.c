@@ -88,30 +88,6 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
 }
 #endif
 
-#ifdef HOLD_ON_OTHER_KEY_PRESS_PER_KEY
-bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        // Cross-thumb layer taps: permissive hold only commits if the other
-        // key releases before this one does. Reaching a layer-shifted key on
-        // the opposite thumb (e.g. NUM_BSP + the NUM layer's `-`) often
-        // releases this key first, so the tap-hold times out as a tap
-        // (Backspace) instead of activating the layer. Hold-on-press commits
-        // as soon as the other key goes down, independent of release order.
-        // NAV_SPC is excluded: fast prose typing constantly rolls the next
-        // letter's press into space's release, and this would turn much of
-        // that into accidental Nav-layer activations.
-        case NUM_BSP:
-        case SYM_ENT:
-        case FUN_DEL:
-        case MED_ESC:
-        case MSE_TAB:
-            return true;
-        default:
-            return false;
-    }
-}
-#endif
-
 #ifdef CHORDAL_HOLD
 // Allow same-hand copy/paste and browser devtools
 bool get_chordal_hold(uint16_t tap_hold_keycode, keyrecord_t *tap_hold_record,

@@ -4,7 +4,6 @@
 #define QUICK_TAP_TERM 120
 #define PERMISSIVE_HOLD_PER_KEY     // Hold on nested taps, per-key (ZMK "balanced")
 #define QUICK_TAP_TERM_PER_KEY      // Custom tap-repeat per key
-#define HOLD_ON_OTHER_KEY_PRESS_PER_KEY  // Hold on nested press (order-independent), per-key
 #define CHORDAL_HOLD                // Opposite-hands rule (replaces Achordion)
 #define SPECULATIVE_HOLD            // Immediate modifier (ZMK hold-while-undecided)
 

@@ -33,6 +33,10 @@ Each has:
 - Kyria: `keyboards/splitkb/kyria/keymaps/byron/`
 - ErgoDox: `keyboards/ergodox_ez/keymaps/byron/`
 
+## Keymap reference PDF
+
+`bin/keymap-pdf kyria|ergodox|atreus|all` writes `docs/keymap-<keyboard>.pdf` (one page per layer). It parses `byron.c`, `byron.h` and the adapter's `LAYOUT_byron` macro, and gets key positions from `qmk info`, so keymap changes show up when you rerun it. Layer colours and one-line blurbs live at the top of the script. Needs the qmk CLI and Chrome/Chromium (`$CHROME` overrides the path); `--html` keeps the intermediate page for previewing.
+
 ## Layers
 
 | Layer | Activation | Content |
